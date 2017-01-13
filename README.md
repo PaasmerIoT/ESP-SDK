@@ -84,3 +84,6 @@ make flash -j4 -C examples/passmer_iot ESPPORT=/dev/ttyUSB0
 
 The support forum is hosted on the GitHub where issues can be identified and the Team from Paasmer would be taking up requstes and resolving them. You could also send a mail to support@paasmer.co with the issue details for resolution.
 
+## Note
+
+The Paasmer IoT ESP-SDK utilizes the features provided by ESP-OPEN-SDK and ESP-OPEN-RTOS
