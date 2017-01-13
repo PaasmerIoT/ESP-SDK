@@ -25,25 +25,28 @@ Registration on the portal http://developer.paasmer.co is necessary to connect t
 ## Installation
 
 * Download the SDK or clone it using the command below.
+
 ```
 $ git clone github.com/PaasmerIoT/ESP-SDK.git
 $ cd ESP-SDK
 ```
 
-* To build any examples that use WiFi, edit `include/ssid_config.h` defining the two macro defines:
+* Supply your WiFi credentials, edit `include/ssid_config.h` defining the two macro defines.
 
 ```c
 #define WIFI_SSID "my wifi ssid"
 #define WIFI_PASS "my secret password"
 ```
 
-* To connect the device to Paasmer IoT Platfrom, do the following
+* To connect the device to Paasmer IoT Platfrom, the following steps need to be performed.
+
 ```
 $ cd examples/paasmer_iot
 $ sudo ./install.sh
 ```
 
-* Upon successful completion of the above command, a few commands which need to be executed are displayed.
+* Upon successful completion of the above command, the following commands need to be executed.
+
 ```
 $ sudo su
 $ source ~/.bashrc
@@ -52,7 +55,7 @@ $ sed -i 's/alias PAASMER/#alias PAASMER/g' ~/.bashrc
 $ exit
 ```
 
-* Edit the config.h file to include the user name(Email), device name and feed names and GPIO pins
+* Edit the config.h file to include the user name(Email), device name, feed names and GPIO pin details.
 
 ```c
 #define UserName "Email Address" //your user name used in developer.paasmer.co for registration
@@ -78,7 +81,7 @@ cd ../../
 make flash -j4 -C examples/passmer_iot ESPPORT=/dev/ttyUSB0
 ```
 
-* The device would now be connected to the Paasmer IoT Platfrom and publishing sensor values are regular intervals.
+* The device would now be connected to the Paasmer IoT Platfrom and publishing sensor values at specified intervals.
 
 ## Support
 
