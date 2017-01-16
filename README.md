@@ -1,5 +1,5 @@
 # ESP-SDK
-**Paasmer IoT SDK** for **ESP based Devices** like **NodeMCU**, **Adafruit Huzzah** etc
+**Paasmer IoT SDK** for **ESP based Devices** like **NodeMCU** and **Adafruit Huzzah**.
 
 ## Overview
 
