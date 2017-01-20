@@ -15,7 +15,7 @@ The **ESP-SDK** provides functionality to create and maintain a mutually authent
 
 ## Pre Requisites
 
-Registration on the portal http://developer.paasmer.co is necessary to connect the device to the **Paasmer IoT Platform** .The SDK has been tested on the Ubuntu 16.10 LTS host with **NodeMCU** and **Adafruit Huzzah**.
+Registration on the portal http://developers.paasmer.co is necessary to connect the device to the **Paasmer IoT Platform** .The SDK has been tested on the Ubuntu 16.10 LTS host with **NodeMCU** and **Adafruit Huzzah**.
 
 * The following support SDK's and toolchain must be installed on the host device.
 * ESP OPEN SDK from https://github.com/pfalcon/esp-open-sdk/.
