@@ -236,8 +236,8 @@ static void mqtt_task(void *pvParameters) {
         network.mqttread = mqtt_ssl_read;
         network.mqttwrite = mqtt_ssl_write;
 
-        printf("%s: connecting to MQTT server %s ... ", __func__,
-                client_endpoint);
+        printf("%s: connecting to MQTT server  ... ", __func__
+                );
         ret = ssl_connect(ssl_conn, client_endpoint, MQTT_PORT);
 
         if (ret) {
@@ -276,6 +276,9 @@ static void mqtt_task(void *pvParameters) {
                 uint32_t free_stack = uxTaskGetStackHighWaterMark(NULL);
 		if(UserName != "" && DeviceName !=""){
 		if (sensordetails==1){
+		static char mac_id[13];
+		sdk_wifi_get_macaddr(STATION_IF, (uint8_t *) mac_id);
+		mac_id[13]="/0";
                 //snprintf(msg, sizeof(msg), "%u: free heap %u, free stack %u",
                         //task_tick, free_heap, free_stack * 4);
 		//sprintf(msg, "%u: free heap %u, free stack %u",
@@ -284,16 +287,20 @@ static void mqtt_task(void *pvParameters) {
 		int b = gpio_read(sensorpin1),c = gpio_read(sensorpin2),d = gpio_read(sensorpin3);
 		//int b = 1,c = 0,d = 1;//int a = 1;
 		
-		snprintf(msg,sizeof(msg),"{\n\"feedname1\" : \"%s\",\n\"sensorvalue1\" : \"%d\",\n\"feedname2\" : \"%s\",\n\"sensorvalue2\" : \"%d\",\n\"feedname3\" : \"%s\",\n\"sensorvalue3\" : \"%d\",\n\"feedname4\" : \"%s\",\n\"sensorvalue4\" : \"%f\",\n\"username\" : \"%s\",\n\"devicename\" : \"%s\"\n}",feedname1,b,feedname2,c,feedname3,d,analogfeedname,a,UserName,DeviceName);
+		snprintf(msg,sizeof(msg),"{\n\"feedname1\" : \"%s\",\n\"sensorvalue1\" : \"%d\",\n\"feedname2\" : \"%s\",\n\"sensorvalue2\" : \"%d\",\n\"feedname3\" : \"%s\",\n\"sensorvalue3\" : \"%d\",\n\"feedname4\" : \"%s\",\n\"sensorvalue4\" : \"%f\",\n\"username\" : \"%s\",\n\"devicename\" : \"%s\",\n\"paasmerid\" : \"%x\"\n}",feedname1,b,feedname2,c,feedname3,d,analogfeedname,a,UserName,DeviceName,mac_id);
 		//sprintf(msg,"{\n\"analogfeedname\" : \"%s\",\n\"analogsensorvalue\" : \"%d\",\n\"username\" : \"%s\",\n\"devicename\" : \"%s\"\n}",analogfeedname,a,UserName,DeviceName);
 		sprintf(PUB_TOPIC,"paasmer_sensor_details");
 		}
 		
 		else if (devicedetails==1){
+		static char mac_id[13];
+		sdk_wifi_get_macaddr(STATION_IF, (uint8_t *) mac_id);
+		mac_id[13]="/0";
+		printf("\nmac address is %x\n",mac_id);
                 //snprintf(msg, sizeof(msg), "%u: free heap %u, free stack %u",
                        // task_tick, free_heap, free_stack * 4);
 		//snprintf(msg,sizeof(msg), "{\n\"username\" : \"%s\",\n\"devicename\" : \"%s\"\n}",UserName,DeviceName);
-		snprintf(msg,sizeof(msg),"{\n\"feedname1\" : \"%s\",\n\"feedtype1\" : \"sensor\",\n\"feedname2\" : \"%s\",\n\"feedtype2\" : \"sensor\",\n\"feedname3\" : \"%s\",\n\"feedtype3\" : \"sensor\",\n\"feedname4\" : \"%s\",\n\"feedtype4\" : \"sensor\",\n\"feedname5\" : \"%s\",\n\"feedtype5\" : \"control\",\n\"feedname6\" : \"%s\",\n\"feedtype6\" : \"control\",\n\"username\" : \"%s\",\n\"devicename\" : \"%s\"\n}",feedname1,feedname2,feedname3,analogfeedname,controlfeedname1,controlfeedname2,UserName,DeviceName);
+		snprintf(msg,sizeof(msg),"{\n\"feedname1\" : \"%s\",\n\"feedtype1\" : \"sensor\",\n\"feedname2\" : \"%s\",\n\"feedtype2\" : \"sensor\",\n\"feedname3\" : \"%s\",\n\"feedtype3\" : \"sensor\",\n\"feedname4\" : \"%s\",\n\"feedtype4\" : \"sensor\",\n\"feedname5\" : \"%s\",\n\"feedtype5\" : \"control\",\n\"feedname6\" : \"%s\",\n\"feedtype6\" : \"control\",\n\"username\" : \"%s\",\n\"devicename\" : \"%s\",\n\"paasmerid\" : \"%x\"\n}",feedname1,feedname2,feedname3,analogfeedname,controlfeedname1,controlfeedname2,UserName,DeviceName,mac_id);
                 //printf("Publishing: %s\r\n", msg);
 		sprintf(PUB_TOPIC,"paasmer_device_details");
                 devicedetails=0;
@@ -303,6 +310,7 @@ static void mqtt_task(void *pvParameters) {
 		
 		
                 printf("Publishing: %s\r\n", msg);
+		
 
                 mqtt_message_t message;
                 message.payload = msg;
