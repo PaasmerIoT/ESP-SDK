@@ -3,9 +3,9 @@
 
 ## Overview
 
-The **Paasmer SDK** for **ESP based Devices** is a collection of source files that enables you to connect to the Paasmer IoT Platform. It includes the trasnport client for **MQTT** with **TLS** support.  It is distributed in source form and intended to be built into customer firmware along with application code, other libraries and RTOS.
+The **Paasmer SDK** for **ESP based Devices** is a collection of source files that enables you to connect to the Paasmer IoT Platform. It includes the transport client for **MQTT** with **TLS** support.  It is distributed in source form and intended to be built into customer firmware along with application code, other libraries and RTOS.
 
-## Featuers
+## Features
 
 The **ESP-SDK** simplifies access to the Pub/Sub functionality of the **Paasmer IoT** broker via **MQTT**. The SDK has been tested to work with the **Paasmer IoT Platform** and **ESP based Devices** like **NodeMCU** and **Adafruit Huzzah**.
 
